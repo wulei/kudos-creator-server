@@ -1,4 +1,4 @@
-package znet
+package znet_tcp
 
 type Message struct {
 	DataLen uint32 //消息的长度

@@ -1,4 +1,4 @@
-package znet
+package znet_tcp
 
 import (
 	"errors"

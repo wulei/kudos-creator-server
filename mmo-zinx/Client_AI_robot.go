@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 	"math/rand"
-	"mmo-go/zinx/znet"
+	"mmo-go/zinx/znet-tcp"
 	"net"
 	"time"
 )
@@ -102,8 +102,8 @@ func main() {
 
 	for {
 		// 发送封包的message消息
-		dp := znet.NewDataPack()
-		msg, err := dp.Pack(znet.NewMsgPackage(uint32(rand.Intn(2)), []byte("Zinx 0.5 client test mesage")))
+		dp := znet_tcp.NewDataPack()
+		msg, err := dp.Pack(znet_tcp.NewMsgPackage(uint32(rand.Intn(2)), []byte("Zinx 0.5 client test mesage")))
 		if err != nil {
 			fmt.Println("pack error:", err)
 			break
@@ -129,7 +129,7 @@ func main() {
 
 		if msgHead.GetDataLen() > 0 {
 			// 2.在根据len 第二次读取 data
-			msg := msgHead.(*znet.Message)
+			msg := msgHead.(*znet_tcp.Message)
 			msg.Data = make([]byte, msg.GetDataLen())
 			if _, err := io.ReadFull(conn, msg.Data); err != nil {
 				fmt.Println("client read msg error", err)

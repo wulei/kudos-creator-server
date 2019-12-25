@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 	"mmo-go/zinx/ziface"
-	"mmo-go/zinx/znet"
+	"mmo-go/zinx/znet-tcp"
 )
 
 //ping test 自定义路由
 type PingRouter struct {
-	znet.BaseRouter
+	znet_tcp.BaseRouter
 }
 
 //Test Handle
@@ -24,7 +24,7 @@ func (this *PingRouter) Handle(request ziface.IRequest) {
 }
 
 type HelloRouter struct {
-	znet.BaseRouter
+	znet_tcp.BaseRouter
 }
 
 //Test Handle
@@ -70,7 +70,7 @@ func DoConnectionLost(conn ziface.IConnection) {
 
 func main() {
 	//	创建一个server句柄,使用zinx的api
-	s := znet.NewServer()
+	s := znet_tcp.NewServer()
 
 	//注册链接hook回调函数
 	s.SetOnConnStart(DoConnectionBegin)
